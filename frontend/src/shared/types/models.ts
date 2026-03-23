@@ -1,17 +1,23 @@
-import type {
-  Tables,
-  TablesInsert,
-  TablesUpdate,
-} from '@/shared/types/supabase';
 
-export type Equipment = Tables<'equipments'>;
-export type InsertEquipment = TablesInsert<'equipments'>;
-export type UpdateEquipment = TablesUpdate<'equipments'>;
+interface Equipment { };
+interface InsertEquipment { };
+interface UpdateEquipment { };
 
-export type EquipmentAttachment = Tables<'equipment_attachments'>;
+interface EquipmentAttachment { };
 
-export type Access = Tables<'accesses'>;
+interface Access { };
 
-export type Intervention = Tables<'interventions'>;
-export type InsertIntervention = TablesInsert<'interventions'>;
-export type UpdateIntervention = TablesUpdate<'interventions'>;
+interface Intervention { };
+interface InsertIntervention { };
+interface UpdateIntervention { };
+
+export type {
+  Equipment,
+  InsertEquipment,
+  UpdateEquipment,
+  EquipmentAttachment,
+  Access,
+  Intervention,
+  InsertIntervention,
+  UpdateIntervention,
+};

@@ -1,4 +1,4 @@
-// Cleans a file name for S3/Supabase storage:
+// Cleans a file name for S3 storage:
 // - removes accents
 // - replaces special characters with _
 // - keeps only letters, numbers, . _ -

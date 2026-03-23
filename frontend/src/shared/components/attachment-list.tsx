@@ -17,7 +17,6 @@ import {
 import type { FC } from 'react';
 
 import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
-import { supabaseClient as supabase } from '@/core/utils/supabaseClient';
 import { SectionHeader } from '@/shared/components/section-header';
 import type { EquipmentAttachment } from '@/shared/types/models';
 import { sanitizeFileName } from '@/shared/utils/sanitize-file-name';
@@ -54,22 +53,20 @@ const AttachmentList: FC<AttachmentListProps> = ({
 
   const { mutate: deleteAttachment } = useDelete();
 
-  const uploadToSupabase: UploadProps['customRequest'] = async ({
+  const upload: UploadProps['customRequest'] = async ({
     file,
     onSuccess,
     onError,
   }) => {
-    try {
+    /* @TODO: Implement upload attachment */
+    throw "Upload not implemented";
+
+    /* try {
       const uploadedFile = file as File;
       const safeName = sanitizeFileName(uploadedFile.name);
       const filePath = `${boat?.data?.id}/${resource}s/${resourceId}/attachments/${Date.now()}_${safeName}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from(boatAttachmentBucket)
-        .upload(filePath, file, {
-          upsert: false,
-          contentType: uploadedFile.type,
-        });
+      
 
       if (uploadError) {
         throw new Error(`Error uploading file: ${uploadError.message}`);
@@ -84,19 +81,18 @@ const AttachmentList: FC<AttachmentListProps> = ({
           type,
         },
       });
-      onSuccess?.('File uploaded successfully!');
+      onSuccess?.('File uploaded successfully!'); 
     } catch (error) {
       console.error('Upload failed:', error);
       onError?.(error as Error);
-    }
+    } */
   };
 
   const onDownload = async (attachment: EquipmentAttachment) => {
-    const { data, error } = await supabase.storage
-      .from(boatAttachmentBucket)
-      .createSignedUrl(attachment.file_path, 3600);
+    /* @TODO: Implement download attachment */
+    throw "Download not implemented";
 
-    if (error) {
+    /* if (error) {
       console.error(`Error creating signed URL: ${error.message}`);
       return;
     }
@@ -109,22 +105,12 @@ const AttachmentList: FC<AttachmentListProps> = ({
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }
+    } */
   };
 
   const onDelete = async (attachment: EquipmentAttachment) => {
-    try {
-      await supabase.storage
-        .from(boatAttachmentBucket)
-        .remove([attachment.file_path]);
-
-      await deleteAttachment({
-        resource: attachmentResource,
-        id: attachment.id,
-      });
-    } catch (error) {
-      console.error('Error deleting attachment:', error);
-    }
+    /* @TODO: Implement delete equiment attachment */
+    throw "Delete not implemented";
   };
 
   if (attachments?.data.length === 0) {
@@ -139,7 +125,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
             <Upload
               accept={type === 'photo' ? 'image/*' : 'application/pdf'}
               showUploadList={false}
-              customRequest={uploadToSupabase}
+              customRequest={upload}
             >
               <Button>{translate(`shared.attachments.${type}.add`)}</Button>
             </Upload>
@@ -185,7 +171,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
       <Upload
         accept={type === 'photo' ? 'image/*' : 'application/pdf'}
         showUploadList={false}
-        customRequest={uploadToSupabase}
+        customRequest={upload}
       >
         <Button type="link" icon={<PaperClipOutlined />}>
           {translate(`shared.attachments.${type}.add`)}

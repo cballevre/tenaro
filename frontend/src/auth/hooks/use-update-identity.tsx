@@ -1,7 +1,5 @@
 import { useGetIdentity } from '@refinedev/core';
 
-import { supabaseClient } from '@/core/utils/supabaseClient';
-
 const useUpdateIdentity = () => {
   const identity = useGetIdentity<{
     id: string;
@@ -9,13 +7,16 @@ const useUpdateIdentity = () => {
   }>();
 
   const update = async (data: Record<string, unknown>) => {
-    supabaseClient.auth.updateUser({
+    /* @TODO : 
+      * This is a temporary solution to update the user metadata in the identity.
+    {
       data: {
         ...identity.data?.user_metadata,
         ...data,
       },
     });
     identity.refetch();
+    */
   };
 
   return { update, identity: identity.data?.user_metadata };
