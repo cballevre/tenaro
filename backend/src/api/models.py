@@ -34,3 +34,19 @@ class Equipment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Intervention(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    date = models.DateTimeField()
+    total_cost = models.FloatField(blank=True, null=True)
+    labor_cost = models.FloatField(blank=True, null=True)
+    supply_cost = models.FloatField(blank=True, null=True)
+    boat = models.ForeignKey(Boat, on_delete=models.CASCADE, related_name="interventions")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+

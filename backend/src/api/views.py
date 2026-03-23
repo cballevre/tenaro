@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Boat, Equipment
-from .serializers import BoatSerializer, EquipmentSerializer
+from .models import Boat, Equipment, Intervention
+from .serializers import BoatSerializer, EquipmentSerializer, InterventionSerializer
 
 
 class BoatViewSet(viewsets.ModelViewSet):
@@ -12,3 +12,8 @@ class BoatViewSet(viewsets.ModelViewSet):
 class EquipmentViewSet(viewsets.ModelViewSet):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
+
+
+class InterventionViewSet(viewsets.ModelViewSet):
+    queryset = Intervention.objects.all()
+    serializer_class = InterventionSerializer
