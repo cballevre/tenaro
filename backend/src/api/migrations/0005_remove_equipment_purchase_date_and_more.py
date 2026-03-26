@@ -4,22 +4,21 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0004_intervention'),
+        ("api", "0004_intervention"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='equipment',
-            name='purchase_date',
+            model_name="equipment",
+            name="purchase_date",
         ),
         migrations.RemoveField(
-            model_name='equipment',
-            name='warranty_end_date',
+            model_name="equipment",
+            name="warranty_end_date",
         ),
         migrations.RemoveField(
-            model_name='intervention',
-            name='date',
+            model_name="intervention",
+            name="date",
         ),
     ]

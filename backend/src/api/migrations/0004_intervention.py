@@ -5,25 +5,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0003_equipment'),
+        ("api", "0003_equipment"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Intervention',
+            name="Intervention",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('date', models.DateTimeField()),
-                ('total_cost', models.FloatField(blank=True, null=True)),
-                ('labor_cost', models.FloatField(blank=True, null=True)),
-                ('supply_cost', models.FloatField(blank=True, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('boat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='interventions', to='api.boat')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("date", models.DateTimeField()),
+                ("total_cost", models.FloatField(blank=True, null=True)),
+                ("labor_cost", models.FloatField(blank=True, null=True)),
+                ("supply_cost", models.FloatField(blank=True, null=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "boat",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="interventions",
+                        to="api.boat",
+                    ),
+                ),
             ],
         ),
     ]

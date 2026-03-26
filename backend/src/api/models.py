@@ -8,9 +8,7 @@ class User(AbstractUser):
 
 class Boat(models.Model):
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="boats"
-    )
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="boats")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -43,7 +41,9 @@ class Intervention(models.Model):
     total_cost = models.FloatField(blank=True, null=True)
     labor_cost = models.FloatField(blank=True, null=True)
     supply_cost = models.FloatField(blank=True, null=True)
-    boat = models.ForeignKey(Boat, on_delete=models.CASCADE, related_name="interventions")
+    boat = models.ForeignKey(
+        Boat, on_delete=models.CASCADE, related_name="interventions"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

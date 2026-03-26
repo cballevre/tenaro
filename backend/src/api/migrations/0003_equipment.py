@@ -5,28 +5,45 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('api', '0002_boat'),
+        ("api", "0002_boat"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Equipment',
+            name="Equipment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('brand', models.CharField(blank=True, max_length=255, null=True)),
-                ('model', models.CharField(blank=True, max_length=255, null=True)),
-                ('serial_number', models.CharField(blank=True, max_length=255, null=True)),
-                ('warranty_end_date', models.DateTimeField(blank=True, null=True)),
-                ('purchase_value', models.FloatField(blank=True, null=True)),
-                ('purchase_date', models.DateTimeField(blank=True, null=True)),
-                ('quantity', models.IntegerField(default=1)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('boat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='equipments', to='api.boat')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("brand", models.CharField(blank=True, max_length=255, null=True)),
+                ("model", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "serial_number",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
+                ("warranty_end_date", models.DateTimeField(blank=True, null=True)),
+                ("purchase_value", models.FloatField(blank=True, null=True)),
+                ("purchase_date", models.DateTimeField(blank=True, null=True)),
+                ("quantity", models.IntegerField(default=1)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "boat",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="equipments",
+                        to="api.boat",
+                    ),
+                ),
             ],
         ),
     ]
