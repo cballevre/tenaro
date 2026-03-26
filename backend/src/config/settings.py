@@ -123,3 +123,11 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 AUTH_USER_MODEL = "api.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        # Disable Browsable API Renderer
+        # "rest_framework.renderers.BrowsableAPIRenderer"
+    ]
+}
