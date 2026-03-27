@@ -5,11 +5,9 @@ import { App as AntdApp, ConfigProvider } from 'antd';
 import type { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter } from 'react-router';
-import dataProvider from "@refinedev/simple-rest";
 
+import { dataProvider } from '@/core/utils/data-provider';
 import { authProvider } from '@/auth/providers/auth-provider';
-
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const { t, i18n } = useTranslation();
@@ -25,7 +23,7 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       <ConfigProvider>
         <AntdApp>
           <Refine
-            dataProvider={dataProvider(apiUrl)}
+            dataProvider={dataProvider}
             authProvider={authProvider}
             routerProvider={routerProvider}
             i18nProvider={i18nProvider}
