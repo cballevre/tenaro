@@ -21,7 +21,7 @@ const AddIntervention = () => {
 
   const handleOnFinish = (values: InterventionFormValues) => {
     onFinish({
-      boat_id: boat?.data.id,
+      boat: boat?.data.id,
       ...values,
     });
     go({
