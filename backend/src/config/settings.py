@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
+    "djoser",
     # Local apps
     "api",
 ]
@@ -134,9 +136,14 @@ STATIC_URL = "static/"
 AUTH_USER_MODEL = "api.User"
 
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication"
+    ],
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         # Disable Browsable API Renderer
-        # "rest_framework.renderers.BrowsableAPIRenderer"
-    ]
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
 }
+
+DJOSER = {"USER_CREATE_PASSWORD_RETYPE": False}
