@@ -2,9 +2,9 @@
 import axios from "axios";
 import type { DataProvider } from "@refinedev/core";
 
-const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = `${import.meta.env.VITE_API_URL}/api`;
 
-export const dataProvider: Omit<
+const dataProvider: Omit<
     Required<DataProvider>,
     "createMany" | "updateMany" | "deleteMany"
 > = {
@@ -37,3 +37,5 @@ export const dataProvider: Omit<
         };
     },
 }
+
+export { apiUrl, dataProvider }

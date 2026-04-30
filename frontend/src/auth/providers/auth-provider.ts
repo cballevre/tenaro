@@ -1,5 +1,7 @@
 import type { AuthProvider } from '@refinedev/core';
+import axios from "axios";
 
+const authUrl = `${import.meta.env.VITE_API_URL}/auth`;
 
 const authProvider: AuthProvider = {
   login: async ({ email }) => {
@@ -21,8 +23,12 @@ const authProvider: AuthProvider = {
     };
   },
   register: async ({ email, password }) => {
+    
     if (email && password) {
-      localStorage.setItem("email", email);
+      await axios.post(`${authUrl}/users/`, {
+        email,
+        password
+      })
       return {
         success: true,
         redirectTo: "/",
@@ -85,7 +91,7 @@ const authProvider: AuthProvider = {
     return { error };
   },
   check: async () => {
-    return localStorage.getItem("email")
+    return localStorage.getItem("token")
       ? { authenticated: true }
       : {
         authenticated: false,
