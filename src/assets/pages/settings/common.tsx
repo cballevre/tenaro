@@ -3,9 +3,9 @@ import { Button, Col, Form, Input, Row } from 'antd';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { BoatDeleteButton } from '@/boats/components/boat-delete-button';
-import { SettingsLayout } from '@/boats/components/settings-layout';
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { BoatDeleteButton } from '@/assets/components/boat-delete-button';
+import { SettingsLayout } from '@/assets/components/settings-layout';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { SectionHeader } from '@/shared/components/section-header';
 
 const CommonSettings = () => {

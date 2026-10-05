@@ -2,7 +2,7 @@ import { useTranslate } from '@refinedev/core';
 import { Select } from 'antd';
 import type { FC } from 'react';
 
-import { boatSystemList } from '@/boats/utils/boat-system';
+import { boatSystemList } from '@/assets/utils/boat-system';
 
 interface BoatSystemSelectProps {
   value?: string;

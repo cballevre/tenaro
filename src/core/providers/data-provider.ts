@@ -12,6 +12,8 @@ const dataProvider: Omit<
 
         const { data } = await axios.get(url);
 
+        console.log("data", data);
+
         return {
             data,
             total: 0

@@ -2,7 +2,7 @@ import { Card, Col, Grid, Row } from 'antd';
 import type React from 'react';
 import type { ReactNode } from 'react';
 
-import { SettingsMenu } from '@/boats/components/settings-menu';
+import { SettingsMenu } from '@/assets/components/settings-menu';
 import { PageHeader } from '@/shared/components/page-header';
 
 interface SettingsLayoutProps {

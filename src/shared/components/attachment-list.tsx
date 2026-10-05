@@ -16,7 +16,7 @@ import {
 } from 'antd';
 import type { FC } from 'react';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { SectionHeader } from '@/shared/components/section-header';
 import type { EquipmentAttachment } from '@/shared/types/models';
 import { sanitizeFileName } from '@/shared/utils/sanitize-file-name';
