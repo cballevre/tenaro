@@ -6,6 +6,9 @@ import type { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter } from 'react-router';
 
+import { dataProvider } from '@/core/providers/data-provider';
+import { authProvider } from '@/auth/providers/auth-provider';
+
 const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const { t, i18n } = useTranslation();
 
@@ -20,6 +23,8 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       <ConfigProvider>
         <AntdApp>
           <Refine
+            dataProvider={dataProvider}
+            authProvider={authProvider}
             routerProvider={routerProvider}
             i18nProvider={i18nProvider}
             notificationProvider={useNotificationProvider}
