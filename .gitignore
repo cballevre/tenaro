@@ -29,3 +29,6 @@ app.db
 
 # Environnement
 .env
+
+# Go
+tmp
