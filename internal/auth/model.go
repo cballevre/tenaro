@@ -1,5 +1,7 @@
 package auth
 
 type User struct {
-	ID int64 `json:"id"`
+	ID       int64  `json:"id"`
+	Email    string `json:"email"`
+	password string
 }

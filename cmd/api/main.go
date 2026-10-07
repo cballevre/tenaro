@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/cballevre/tenaro/internal/asset"
+	"github.com/cballevre/tenaro/internal/auth"
 	"github.com/cballevre/tenaro/internal/db"
 )
 
@@ -27,6 +28,7 @@ func main() {
 	api := router.Group("/api/v1")
 
 	asset.NewHandler(sqlDB).RegisterRoutes(api)
+	auth.NewHandler(sqlDB).RegisterRoutes(api)
 
 	router.Run() // listens on 0.0.0.0:8080 by default
 }
