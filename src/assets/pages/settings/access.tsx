@@ -1,7 +1,7 @@
 import { useTranslate } from '@refinedev/core';
 
-import { AccessList } from '@/boats/components/access-list';
-import { SettingsLayout } from '@/boats/components/settings-layout';
+import { AccessList } from '@/assets/components/access-list';
+import { SettingsLayout } from '@/assets/components/settings-layout';
 
 const AccessSettings = () => {
   const translate = useTranslate();

@@ -4,12 +4,12 @@ import { Navigate, Outlet, Route, Routes } from 'react-router';
 
 import { Login } from '@/auth/pages/login';
 import { SettingsPage } from '@/auth/pages/settings';
-import { BoatLayout } from '@/boats/components/boat-layout';
-import { AddBoat } from '@/boats/pages/add';
-import { BoatDashboard } from '@/boats/pages/dashboard';
-import { ListBoat } from '@/boats/pages/list';
-import { AccessSettings } from '@/boats/pages/settings/access';
-import { CommonSettings } from '@/boats/pages/settings/common';
+import { BoatLayout } from '@/assets/components/boat-layout';
+import { AddBoat } from '@/assets/pages/add';
+import { BoatDashboard } from '@/assets/pages/dashboard';
+import { ListAsset } from '@/assets/pages/list';
+import { AccessSettings } from '@/assets/pages/settings/access';
+import { CommonSettings } from '@/assets/pages/settings/common';
 import { AppLayout } from '@/core/components/app-layout';
 import { AddEquipment } from '@/equipments/pages/add';
 import { EditEquipment } from '@/equipments/pages/edit';
@@ -32,9 +32,9 @@ const AppRouter = () => {
           </Authenticated>
         }
       >
-        <Route index element={<ListBoat />} />
-        <Route path="/boats/add" element={<AddBoat />} />
-        <Route path="/boats/:boatId" element={<BoatLayout />}>
+        <Route index element={<ListAsset />} />
+        <Route path="/assets/add" element={<AddBoat />} />
+        <Route path="/assets/:assetId" element={<BoatLayout />}>
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<BoatDashboard />} />
           <Route path="interventions">
