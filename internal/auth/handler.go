@@ -19,7 +19,7 @@ func (h *Handler) RegisterRoutes(rg *gin.RouterGroup) {
 	assets := rg.Group("/auth")
 	{
 		assets.POST("/register", h.register)
-		// assets.GET("/login", h.login)
+		assets.GET("/login", h.login)
 		// assets.POST("/post", h.logout)
 	}
 }
@@ -37,5 +37,24 @@ func (h *Handler) register(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, user)
+	c.JSON(http.StatusOK, user)
+}
+
+func (h *Handler) login(c *gin.Context) {
+	var in LoginUserInput
+	if err := c.ShouldBindJSON(&in); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	user, err := h.svc.Login(c.Request.Context(), in)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erreur interne"})
+		return
+	}
+
+	c.JSON(http.StatusAccepted)
+
+	// Ajouter le cookier à la requête -->
+
 }
