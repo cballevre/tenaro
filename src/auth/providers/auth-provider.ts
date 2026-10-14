@@ -4,12 +4,20 @@ import axios from "axios";
 const authUrl = `${import.meta.env.VITE_API_URL}/auth`;
 
 const authProvider: AuthProvider = {
-  login: async ({ email }) => {
+  login: async ({ email, password }) => {
 
-    console.log("email", email);
+    const res = await fetch("/api/v1/auth/login", {
+      method: "post",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
 
-    if (email) {
-      localStorage.setItem("email", email);
+    if(res.ok) {
       return {
         success: true,
         redirectTo: "/",
