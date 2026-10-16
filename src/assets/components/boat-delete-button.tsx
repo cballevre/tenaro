@@ -2,7 +2,7 @@ import { useDelete, useGo, useTranslate } from '@refinedev/core';
 import { Button, Input, Modal, Typography } from 'antd';
 import { useState } from 'react';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 
 export const BoatDeleteButton = () => {
   const { data } = useCurrentBoat();

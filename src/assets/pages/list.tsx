@@ -5,32 +5,34 @@ import { Card, Col, Row } from 'antd';
 import { PageHeader } from '@/shared/components/page-header';
 import { PageLayout } from '@/shared/components/page-layout';
 
-const ListBoat = () => {
-  const { data: boats } = useList({
-    resource: 'boats',
+const ListAsset = () => {
+  const { data: assets } = useList({
+    resource: 'assets',
   });
+
+  console.log(assets);
 
   const translate = useTranslate();
 
   return (
     <PageLayout>
-      <PageHeader title={translate('boats.dashboard.title')} />
+      <PageHeader title={translate('assets.dashboard.title')} />
       <Row gutter={[16, 16]}>
-        {boats?.data?.map((boat) => (
-          <Col xs={24} sm={12} md={6} key={boat.id}>
-            <Link to={`/boats/${boat.id}/dashboard`}>
+        {assets?.data?.map((asset) => (
+          <Col xs={24} sm={12} md={6} key={asset.id}>
+            <Link to={`/assets/${asset.id}/dashboard`}>
               <Card hoverable>
-                <Card.Meta title={boat.name} description={boat.description} />
+                <Card.Meta title={asset.name} description={asset.description} />
               </Card>
             </Link>
           </Col>
         ))}
         <Col xs={24} sm={12} md={6}>
-          <Link to="/boats/add">
+          <Link to="/assets/add">
             <Card hoverable style={{ textAlign: 'center' }}>
               <PlusOutlined style={{ fontSize: 24 }} />
               <span style={{ marginLeft: 16 }}>
-                {translate('boats.list.add')}
+                {translate('assets.list.add')}
               </span>
             </Card>
           </Link>
@@ -40,4 +42,4 @@ const ListBoat = () => {
   );
 };
 
-export { ListBoat };
+export { ListAsset };

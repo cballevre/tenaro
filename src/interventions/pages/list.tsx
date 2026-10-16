@@ -2,7 +2,7 @@ import { Link, useInfiniteList, useTranslation } from '@refinedev/core';
 import { Button, List } from 'antd';
 import { Fragment } from 'react/jsx-runtime';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { PageContent } from '@/shared/components/page-content';
 import { PageHeader } from '@/shared/components/page-header';
 import { ResourceActionsMenu } from '@/shared/components/resource-actions-menu';

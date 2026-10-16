@@ -1,7 +1,7 @@
 import { Create, useForm } from '@refinedev/antd';
 import { useGo, useTranslate } from '@refinedev/core';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { EquipmentForm } from '@/equipments/components/equipment-form';
 import type { InsertEquipment } from '@/shared/types/models';
 
