@@ -22,7 +22,7 @@ type RegisterUserInput struct {
 }
 
 func (s *Service) Register(ctx context.Context, in RegisterUserInput) (*User, error) {
-	user := &User{Email: in.Email, password: in.Password}
+	user := &User{Email: in.Email, Password: in.Password}
 	if err := s.repo.Create(ctx, user); err != nil {
 		return nil, err
 	}
@@ -36,14 +36,14 @@ type LoginUserInput struct {
 
 func (s *Service) Login(ctx context.Context, in LoginUserInput) (*User, error) {
 	user, err := s.repo.FindByEmail(ctx, in.Email)
+
 	if err != nil {
 		return nil, ErrUnauthentificated
-
 	}
 
-	// Vérifier que le mot de passe est le même que celui enregistrer
-
-	// Si oui créer une session pour l'utilisateur et la renvoyer au handler
+	if in.Password != user.Password {
+		return nil, ErrUnauthentificated
+	}
 
 	return user, nil
 }
