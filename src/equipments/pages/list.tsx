@@ -1,8 +1,8 @@
 import { Link, useInfiniteList, useTranslate } from '@refinedev/core';
 import { Button, Card, Empty, List } from 'antd';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
-import { boatSystemList } from '@/boats/utils/boat-system';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
+import { boatSystemList } from '@/assets/utils/boat-system';
 import { PageContent } from '@/shared/components/page-content';
 import { PageHeader } from '@/shared/components/page-header';
 import { ResourceActionsMenu } from '@/shared/components/resource-actions-menu';

@@ -16,8 +16,7 @@ import {
 } from 'antd';
 import type { FC } from 'react';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
-import { supabaseClient as supabase } from '@/core/utils/supabaseClient';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { SectionHeader } from '@/shared/components/section-header';
 import type { EquipmentAttachment } from '@/shared/types/models';
 import { sanitizeFileName } from '@/shared/utils/sanitize-file-name';
@@ -59,7 +58,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
     onSuccess,
     onError,
   }) => {
-    try {
+    /* try {
       const uploadedFile = file as File;
       const safeName = sanitizeFileName(uploadedFile.name);
       const filePath = `${boat?.data?.id}/${resource}s/${resourceId}/attachments/${Date.now()}_${safeName}`;
@@ -69,7 +68,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
         .upload(filePath, file, {
           upsert: false,
           contentType: uploadedFile.type,
-        });
+        }); 
 
       if (uploadError) {
         throw new Error(`Error uploading file: ${uploadError.message}`);
@@ -88,11 +87,11 @@ const AttachmentList: FC<AttachmentListProps> = ({
     } catch (error) {
       console.error('Upload failed:', error);
       onError?.(error as Error);
-    }
+    } */
   };
 
   const onDownload = async (attachment: EquipmentAttachment) => {
-    const { data, error } = await supabase.storage
+    /* const { data, error } = await supabase.storage
       .from(boatAttachmentBucket)
       .createSignedUrl(attachment.file_path, 3600);
 
@@ -109,11 +108,11 @@ const AttachmentList: FC<AttachmentListProps> = ({
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }
+    } */
   };
 
   const onDelete = async (attachment: EquipmentAttachment) => {
-    try {
+    /* try {
       await supabase.storage
         .from(boatAttachmentBucket)
         .remove([attachment.file_path]);
@@ -124,7 +123,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
       });
     } catch (error) {
       console.error('Error deleting attachment:', error);
-    }
+    } */
   };
 
   if (attachments?.data.length === 0) {
@@ -192,7 +191,7 @@ const AttachmentList: FC<AttachmentListProps> = ({
         </Button>
       </Upload>
     </section>
-  );
+  ); 
 };
 
 export { AttachmentList };

@@ -1,7 +1,7 @@
 import { Create, useForm } from '@refinedev/antd';
 import { useGo, useTranslate } from '@refinedev/core';
 
-import { useCurrentBoat } from '@/boats/hooks/use-current-boat';
+import { useCurrentBoat } from '@/assets/hooks/use-current-boat';
 import { InterventionForm } from '@/interventions/components/intervention-form';
 
 interface InterventionFormValues {

@@ -1,0 +1,20 @@
+meta {
+  name: Create an asset
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/v1/assets/
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  name: Sterenn
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
