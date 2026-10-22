@@ -38,8 +38,8 @@ func (r Repository) FindByEmail(ctx context.Context, email string) (*User, error
 
 func (r Repository) CreateSession(ctx context.Context, session *Session) error {
 	err := r.db.QueryRowContext(ctx,
-		`INSERT INTO sessions (token, user_id) VALUES (?, ?) RETURNING created_at, expires_at`,
-		session.Token, session.userId,
-	).Scan(&session.createdAt, &session.expiresAt)
+		`INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?) RETURNING created_at`,
+		session.TokenHash, session.UserID, session.ExpiresAt,
+	).Scan(&session.CreatedAt)
 	return err
 }

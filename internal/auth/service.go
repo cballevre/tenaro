@@ -2,11 +2,17 @@ package auth
 
 import (
 	"context"
+	"crypto/rand"
+	"crypto/sha256"
+	"encoding/hex"
 	"errors"
+	"time"
 )
 
 var ErrNotFound = errors.New("User not found")
 var ErrUnauthentificated = errors.New("User unauthentificated")
+
+const sessionTTL = 24 * time.Hour
 
 type Service struct {
 	repo *Repository
@@ -29,21 +35,48 @@ func (s *Service) Register(ctx context.Context, in RegisterUserInput) (*User, er
 	return user, nil
 }
 
-type LoginUserInput struct {
+type LoginInput struct {
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required,min=8"`
 }
 
-func (s *Service) Login(ctx context.Context, in LoginUserInput) (*User, error) {
+type LoginResult struct {
+	User  *User
+	Token string
+}
+
+func (s *Service) Login(ctx context.Context, in LoginInput) (LoginResult, error) {
 	user, err := s.repo.FindByEmail(ctx, in.Email)
 
 	if err != nil {
-		return nil, ErrUnauthentificated
+		return LoginResult{}, ErrUnauthentificated
 	}
 
 	if in.Password != user.Password {
-		return nil, ErrUnauthentificated
+		return LoginResult{}, ErrUnauthentificated
 	}
 
-	return user, nil
+	b := make([]byte, 32)
+	rand.Read(b)
+	token := hex.EncodeToString(b)
+
+	session := &Session{
+		TokenHash: hashToken(token),
+		UserID:    user.ID,
+		ExpiresAt: time.Now().UTC().Add(sessionTTL),
+	}
+
+	if err := s.repo.CreateSession(ctx, session); err != nil {
+		return LoginResult{}, ErrUnauthentificated
+	}
+
+	return LoginResult{
+		User:  user,
+		Token: token,
+	}, nil
+}
+
+func hashToken(token string) string {
+	sum := sha256.Sum256([]byte(token))
+	return hex.EncodeToString(sum[:])
 }

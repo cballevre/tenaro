@@ -9,8 +9,8 @@ type User struct {
 }
 
 type Session struct {
-	Token     string
-	userId    string
-	createdAt time.Time
-	expiresAt time.Time
+	TokenHash string
+	UserID    int64
+	CreatedAt time.Time
+	ExpiresAt time.Time
 }
